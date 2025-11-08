@@ -1,0 +1,204 @@
+/* jarvis/static/style.css - NEW SLEEK UI */
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #000; /* Deep black background */
+    color: #00eaff; /* Bright cyan text color for consistency */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow: hidden; /* Prevent scrollbars */
+    cursor: default; /* Default cursor */
+}
+
+.app-container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+/* Header (for Jarvis.AI title and fake window controls) */
+.header {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    right: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.2em;
+    color: rgba(0, 234, 255, 0.7); /* Slightly muted cyan */
+    text-shadow: 0 0 5px rgba(0, 234, 255, 0.5);
+}
+
+.app-title {
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.window-controls {
+    display: flex;
+    gap: 10px;
+}
+
+.control-btn {
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 3px;
+    background-color: rgba(0, 234, 255, 0.1);
+    transition: background-color 0.2s;
+}
+
+.control-btn:hover {
+    background-color: rgba(0, 234, 255, 0.3);
+}
+
+/* Ring Container (Central Orb) */
+.ring-container {
+    width: 250px; /* Larger orb */
+    height: 250px;
+    border-radius: 50%;
+    background: radial-gradient(circle at center, rgba(0, 234, 255, 0.3) 0%, rgba(0, 234, 255, 0.1) 50%, transparent 100%);
+    box-shadow: 0 0 40px rgba(0, 234, 255, 0.6), inset 0 0 20px rgba(0, 234, 255, 0.4);
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.5s ease-in-out;
+}
+
+/* Orb animations based on state */
+.ring-container.idle {
+    animation: pulseIdle 3s infinite ease-in-out;
+}
+
+.ring-container.listening {
+    animation: pulseListen 1.5s infinite alternate, glowListen 1.5s infinite alternate;
+}
+
+.ring-container.speaking {
+    animation: pulseSpeak 1s infinite alternate, glowSpeak 1s infinite alternate;
+    background: radial-gradient(circle at center, rgba(255, 0, 0, 0.4) 0%, rgba(255, 0, 0, 0.2) 50%, transparent 100%); /* Reddish glow when speaking */
+    box-shadow: 0 0 40px rgba(255, 0, 0, 0.6), inset 0 0 20px rgba(255, 0, 0, 0.4);
+}
+
+@keyframes pulseIdle {
+    0% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.03); opacity: 0.95; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes pulseListen {
+    0% { transform: scale(1); }
+    100% { transform: scale(1.05); }
+}
+
+@keyframes glowListen {
+    0% { box-shadow: 0 0 40px rgba(0, 234, 255, 0.6), inset 0 0 20px rgba(0, 234, 255, 0.4); }
+    100% { box-shadow: 0 0 60px rgba(0, 234, 255, 0.8), inset 0 0 30px rgba(0, 234, 255, 0.6); }
+}
+
+@keyframes pulseSpeak {
+    0% { transform: scale(1); }
+    100% { transform: scale(1.07); }
+}
+
+@keyframes glowSpeak {
+    0% { box-shadow: 0 0 40px rgba(255, 0, 0, 0.6), inset 0 0 20px rgba(255, 0, 0, 0.4); }
+    100% { box-shadow: 0 0 60px rgba(255, 0, 0, 0.8), inset 0 0 30px rgba(255, 0, 0, 0.6); }
+}
+
+
+/* Status Message */
+.status-message {
+    position: absolute;
+    bottom: 120px; /* Position below the orb, above the mic */
+    font-size: 1.1em;
+    color: rgba(0, 234, 255, 0.8);
+    text-shadow: 0 0 8px rgba(0, 234, 255, 0.6);
+    text-align: center;
+    width: 80%;
+}
+
+/* Microphone Button */
+.mic-button {
+    background: none;
+    border: none;
+    color: #00eaff;
+    cursor: pointer;
+    padding: 15px;
+    position: absolute;
+    bottom: 50px; /* Position at the bottom */
+    transition: transform 0.2s, color 0.2s;
+}
+
+.mic-button:hover {
+    color: #00ffff; /* Brighter cyan on hover */
+    transform: scale(1.05);
+}
+
+.mic-button:disabled {
+    color: rgba(0, 234, 255, 0.5); /* Muted when disabled */
+    cursor: not-allowed;
+    transform: scale(1);
+}
+
+.mic-icon {
+    width: 45px; /* Larger icon */
+    height: 45px;
+    filter: drop-shadow(0 0 8px rgba(0, 234, 255, 0.7)); /* Glowing effect */
+}
+
+
+/* Hidden Log (for debugging/fallback, not displayed by default) */
+.hidden-log {
+    position: absolute;
+    top: 50%; /* Center vertically */
+    left: 50%; /* Center horizontally */
+    transform: translate(-50%, -50%); /* Adjust for true centering */
+    width: 80%;
+    max-height: 80%;
+    background-color: rgba(0, 0, 0, 0.7);
+    border: 1px solid rgba(0, 234, 255, 0.3);
+    border-radius: 8px;
+    padding: 15px;
+    overflow-y: auto;
+    font-size: 0.9em;
+    opacity: 0; /* Initially hidden */
+    pointer-events: none; /* Do not block interaction */
+    transition: opacity 0.3s ease-in-out;
+    color: #fff; /* White text for hidden log readability */
+}
+
+/* Toggle visibility for debugging */
+.hidden-log.visible {
+    opacity: 1;
+    pointer-events: all;
+    z-index: 1000; /* Ensure it's on top */
+}
+
+.user-msg {
+    color: #a0ffa0; /* Green for user messages */
+    margin-bottom: 5px;
+}
+
+.jarvis-msg {
+    color: #88eeff; /* Light blue for Jarvis messages */
+    margin-bottom: 5px;
+}
+
+/* No longer needed: userInput, sendButton styles */
+/* .user-input-container { display: none; } */
+/* .user-input { display: none; } */
+/* .send-button { display: none; } */
