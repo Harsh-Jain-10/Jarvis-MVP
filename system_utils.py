@@ -1,0 +1,159 @@
+# jarvis/system_utils.py (FIXED PATHS FOR SCREENSHOT AND FOLDER)
+import subprocess
+import os
+import platform
+import webbrowser
+import pyautogui
+from datetime import datetime
+
+# --- Utility Functions (unchanged logic, only path changes) ---
+
+
+def get_current_datetime(query: str) -> str:
+    """Returns the current day, date, and time."""
+    now = datetime.now()
+    
+    if "date" in query.lower() or "day" in query.lower():
+        reply = now.strftime("Today is %A, %B %d, %Y.")
+    elif "time" in query.lower():
+        reply = now.strftime("The current time is %I:%M %p.")
+    else:
+        reply = now.strftime("The current date and time is %A, %B %d, %Y at %I:%M %p.")
+        
+    return reply
+
+def open_app(name: str) -> str:
+    """Attempts to open a program or file based on the OS."""
+    
+    name = name.lower().replace('open', '').replace('start', '').strip()
+    # (Rest of open_app remains the same as it doesn't rely on Desktop path)
+    if platform.system() == "Windows":
+        if "calculator" in name:
+            os.startfile("calc.exe")
+        elif "notepad" in name:
+            os.startfile("notepad.exe")
+        # ... (rest of logic) ...
+        else:
+            try:
+                subprocess.Popen(name)
+                return f"Attempting to open {name}..."
+            except FileNotFoundError:
+                return f"Could not find or open the application: {name}"
+
+    elif platform.system() == "Darwin" or platform.system() == "Linux":
+        try:
+            subprocess.Popen(['open', name])
+        except FileNotFoundError:
+            try:
+                subprocess.Popen(['xdg-open', name])
+            except:
+                return f"Could not find or open the application: {name}"
+    
+    return f"Opened {name}."
+
+# --- FIX: Folder Creation Path ---
+# jarvis/system_utils.py (MODIFIED create_folder function)
+
+# ... (other imports and functions) ...
+
+# --- FIX: Folder Creation Path (Revisiting) ---
+def create_folder(name: str) -> str:
+    """Creates a new folder in the user's Desktop directory."""
+    
+    name = name.replace("create folder", "").replace("make directory", "").strip()
+    folder_name = f"Jarvis_Folder_{datetime.now().strftime('%Y%m%d_%H%M%S')}" if not name else name.replace(" ", "_")
+    
+    # --- Try 1: Use the standard Windows Desktop path environment variable ---
+    if platform.system() == "Windows":
+        # Using %HOMEPATH% or %USERPROFILE% can be unreliable for redirected folders.
+        # Let's try the common Windows Desktop shell folder, falling back to a hard path on D:
+        try:
+            # Attempt to use a common path resolution (might still hit C: drive)
+            desktop = os.path.join(os.path.expanduser('~'), 'Desktop')
+            path = os.path.join(desktop, folder_name)
+            os.makedirs(path, exist_ok=True)
+            return f"Folder '{folder_name}' created on the Desktop at: {desktop}."
+        except Exception as e:
+            # --- Fallback 2: Target the D:\Desktop path based on your setup ---
+            # NOTE: This is a custom fix for your system (D:\Desktop)
+            try:
+                target_drive_desktop = os.path.join("D:", "Desktop")
+                path = os.path.join(target_drive_desktop, folder_name)
+                os.makedirs(path, exist_ok=True)
+                return f"Folder '{folder_name}' created on D-Drive Desktop at: {target_drive_desktop}."
+            except Exception as fallback_e:
+                # --- Fallback 3: Create it in the Jarivis project root ---
+                project_root = os.path.dirname(os.path.abspath(__file__))
+                path = os.path.join(project_root, folder_name)
+                os.makedirs(path, exist_ok=True)
+                return f"Folder '{folder_name}' created in project root as Desktop path was inaccessible. Path: {project_root}"
+    
+    # --- Linux/macOS path logic (unchanged) ---
+    else:
+        desktop = os.path.join(os.path.expanduser('~'), 'Desktop')
+        path = os.path.join(desktop, folder_name)
+        try:
+            os.makedirs(path, exist_ok=True)
+            return f"Folder '{folder_name}' created on the Desktop."
+        except Exception as e:
+             return f"Failed to create folder: {e}"
+
+# ... (rest of system_utils.py) ...
+# --- FIX: Screenshot Path ---
+def take_screenshot() -> str:
+    """Takes a screenshot and saves it to the user's Downloads folder."""
+    try:
+        screenshot = pyautogui.screenshot()
+        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+        
+        # Use a reliable path: the Downloads folder, which is less likely to be a symlink or redirected folder
+        if platform.system() == "Windows":
+            # Using %USERPROFILE% environment variable
+            target_dir = os.path.join(os.environ['USERPROFILE'], 'Downloads')
+        else:
+            # Standard way for Linux/macOS
+            target_dir = os.path.join(os.path.expanduser('~'), 'Downloads')
+            
+        # Ensure the target directory exists
+        os.makedirs(target_dir, exist_ok=True)
+        
+        filename = os.path.join(target_dir, f"Jarvis_Screenshot_{timestamp}.png")
+        
+        screenshot.save(filename)
+        return f"Screenshot saved to your Downloads folder: {os.path.basename(filename)}"
+    except Exception as e:
+        return f"Failed to take screenshot. Error: {e}. Check if dependencies like PIL are installed."
+
+# --- Power Control (Unchanged) ---
+# ... (shutdown, cancel_shutdown, restart functions remain the same)
+def shutdown() -> str:
+    # ... (code) ...
+    if platform.system() == "Windows":
+        os.system("shutdown /s /t 60")
+        return "System scheduled for shutdown in 1 minute. Say 'cancel shutdown' to stop."
+    # ... (rest of the system_utils file)
+    elif platform.system() in ["Linux", "Darwin"]:
+        os.system("shutdown -h +1")
+        return "System scheduled for shutdown in 1 minute. Say 'cancel shutdown' to stop."
+    else:
+        return "Shutdown command not supported on this OS."
+
+def cancel_shutdown() -> str:
+    if platform.system() == "Windows":
+        os.system("shutdown /a")
+        return "Scheduled shutdown cancelled."
+    elif platform.system() in ["Linux", "Darwin"]:
+        os.system("shutdown -c")
+        return "Scheduled shutdown cancelled."
+    else:
+        return "Shutdown command not supported on this OS."
+
+def restart() -> str:
+    if platform.system() == "Windows":
+        os.system("shutdown /r /t 60")
+        return "System scheduled for restart in 1 minute. Say 'cancel shutdown' to stop."
+    elif platform.system() in ["Linux", "Darwin"]:
+        os.system("shutdown -r +1")
+        return "System scheduled for restart in 1 minute. Say 'cancel shutdown' to stop."
+    else:
+        return "Restart command not supported on this OS."
