@@ -1,0 +1,10 @@
+Flask
+pyttsx3
+SpeechRecognition
+pyaudio
+requests
+beautifulsoup4
+python-dotenv
+pyautogui
+Pillow
+ollama
