@@ -6,7 +6,7 @@ NOTES_FILE = os.path.join(os.path.dirname(__file__), 'notes.txt')
 def add_note(text: str) -> str:
     """Adds a note (text) to the notes file."""
     try:
-        # Simple extraction for the note content
+        
         note_content = text.replace("note", "", 1).replace("remind", "", 1).strip()
         if not note_content:
             return "Please tell me what you want to save as a note."
@@ -44,4 +44,5 @@ def clear_notes() -> str:
             open(NOTES_FILE, 'w').close() 
         return "All notes have been cleared."
     except Exception as e:
+
         return f"Failed to clear notes: {e}"
