@@ -1,4 +1,4 @@
-# jarvis/system_utils.py (FIXED PATHS FOR SCREENSHOT AND FOLDER)
+# jarvis/system_utils.py 
 import subprocess
 import os
 import platform
@@ -6,7 +6,7 @@ import webbrowser
 import pyautogui
 from datetime import datetime
 
-# --- Utility Functions (unchanged logic, only path changes) ---
+# --- Utility Functions---
 
 
 def get_current_datetime(query: str) -> str:
@@ -26,13 +26,13 @@ def open_app(name: str) -> str:
     """Attempts to open a program or file based on the OS."""
     
     name = name.lower().replace('open', '').replace('start', '').strip()
-    # (Rest of open_app remains the same as it doesn't rely on Desktop path)
+   
     if platform.system() == "Windows":
         if "calculator" in name:
             os.startfile("calc.exe")
         elif "notepad" in name:
             os.startfile("notepad.exe")
-        # ... (rest of logic) ...
+        
         else:
             try:
                 subprocess.Popen(name)
@@ -51,44 +51,37 @@ def open_app(name: str) -> str:
     
     return f"Opened {name}."
 
-# --- FIX: Folder Creation Path ---
-# jarvis/system_utils.py (MODIFIED create_folder function)
 
-# ... (other imports and functions) ...
-
-# --- FIX: Folder Creation Path (Revisiting) ---
 def create_folder(name: str) -> str:
     """Creates a new folder in the user's Desktop directory."""
     
     name = name.replace("create folder", "").replace("make directory", "").strip()
     folder_name = f"Jarvis_Folder_{datetime.now().strftime('%Y%m%d_%H%M%S')}" if not name else name.replace(" ", "_")
     
-    # --- Try 1: Use the standard Windows Desktop path environment variable ---
+   
     if platform.system() == "Windows":
-        # Using %HOMEPATH% or %USERPROFILE% can be unreliable for redirected folders.
-        # Let's try the common Windows Desktop shell folder, falling back to a hard path on D:
+      
         try:
-            # Attempt to use a common path resolution (might still hit C: drive)
+           
             desktop = os.path.join(os.path.expanduser('~'), 'Desktop')
             path = os.path.join(desktop, folder_name)
             os.makedirs(path, exist_ok=True)
             return f"Folder '{folder_name}' created on the Desktop at: {desktop}."
         except Exception as e:
-            # --- Fallback 2: Target the D:\Desktop path based on your setup ---
-            # NOTE: This is a custom fix for your system (D:\Desktop)
+
             try:
                 target_drive_desktop = os.path.join("D:", "Desktop")
                 path = os.path.join(target_drive_desktop, folder_name)
                 os.makedirs(path, exist_ok=True)
                 return f"Folder '{folder_name}' created on D-Drive Desktop at: {target_drive_desktop}."
             except Exception as fallback_e:
-                # --- Fallback 3: Create it in the Jarivis project root ---
+                
                 project_root = os.path.dirname(os.path.abspath(__file__))
                 path = os.path.join(project_root, folder_name)
                 os.makedirs(path, exist_ok=True)
                 return f"Folder '{folder_name}' created in project root as Desktop path was inaccessible. Path: {project_root}"
     
-    # --- Linux/macOS path logic (unchanged) ---
+    # --- Linux/macOS path logic ---
     else:
         desktop = os.path.join(os.path.expanduser('~'), 'Desktop')
         path = os.path.join(desktop, folder_name)
@@ -98,23 +91,21 @@ def create_folder(name: str) -> str:
         except Exception as e:
              return f"Failed to create folder: {e}"
 
-# ... (rest of system_utils.py) ...
-# --- FIX: Screenshot Path ---
+
 def take_screenshot() -> str:
     """Takes a screenshot and saves it to the user's Downloads folder."""
     try:
         screenshot = pyautogui.screenshot()
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-        
-        # Use a reliable path: the Downloads folder, which is less likely to be a symlink or redirected folder
+
         if platform.system() == "Windows":
-            # Using %USERPROFILE% environment variable
+
             target_dir = os.path.join(os.environ['USERPROFILE'], 'Downloads')
         else:
-            # Standard way for Linux/macOS
+
             target_dir = os.path.join(os.path.expanduser('~'), 'Downloads')
             
-        # Ensure the target directory exists
+
         os.makedirs(target_dir, exist_ok=True)
         
         filename = os.path.join(target_dir, f"Jarvis_Screenshot_{timestamp}.png")
@@ -124,8 +115,8 @@ def take_screenshot() -> str:
     except Exception as e:
         return f"Failed to take screenshot. Error: {e}. Check if dependencies like PIL are installed."
 
-# --- Power Control (Unchanged) ---
-# ... (shutdown, cancel_shutdown, restart functions remain the same)
+# --- Power Control 
+# ... (shutdown, cancel_shutdown, restart functions )
 def shutdown() -> str:
     # ... (code) ...
     if platform.system() == "Windows":
@@ -156,4 +147,5 @@ def restart() -> str:
         os.system("shutdown -r +1")
         return "System scheduled for restart in 1 minute. Say 'cancel shutdown' to stop."
     else:
+
         return "Restart command not supported on this OS."
