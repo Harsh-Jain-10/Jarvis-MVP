@@ -75,16 +75,12 @@ def speak(text):
     threading.Thread(target=run_speak, daemon=True).start()
 
 
-# --- Intent Detection Heuristic (FIXED for 'what is') ---
+# --- Intent Detection Heuristic ---
 
 def detect_intent(query: str) -> str:
-    """
-    Lightweight heuristic to determine the user's intent.
-    FIX: Ensure "who is" / "what is" are NOT prioritized over chat.
-    """
     q_lower = query.lower()
     
-    # 1. System Control
+    # 1. System Control (Time/Date fix already integrated here)
     system_keywords = ["open", "start", "launch", "shutdown", "restart", "screenshot", "folder", "directory", "cancel shutdown", "day today", "date today", "time now", "current time"]
     if any(keyword in q_lower for keyword in system_keywords):
         return "system"
@@ -94,13 +90,14 @@ def detect_intent(query: str) -> str:
     if any(keyword in q_lower for keyword in notes_keywords):
         return "notes"
         
-    # 3. Real-time Web Data (Requires specific keywords like weather, news)
-    web_keywords = ["weather", "news", "current time", "date today", "search for", "latest", "temperature"]
+    # 3. Real-time Web Data (ADD AQI/AIR QUALITY)
+    web_keywords = ["weather", "news", "temperature", "aqi", "air quality", "stock price", "latest news"]
     if any(keyword in q_lower for keyword in web_keywords):
         return "web"
 
-    # 4. Default: Conversational Chat (Catches 'who is' and 'what is' now)
+    # 4. Default: Conversational Chat
     return "chat"
+
 
 # --- Web Handler ---
 
@@ -297,3 +294,4 @@ def process_text_query(query: str) -> str:
     else: # intent == "chat"
 
         return handle_chat_query(query)
+
