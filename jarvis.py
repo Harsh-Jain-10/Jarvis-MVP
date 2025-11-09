@@ -135,14 +135,16 @@ def get_weather(city: str) -> str:
         print(f"General Weather Error: {e}")
         return f"An unexpected error occurred while processing the weather data."
 
+
 def handle_web_query(query):
-    """Handles real-time web queries (Weather, News, Search)."""
+    """Handles real-time web queries (Weather, AQI, Search)."""
     q_lower = query.lower()
     
     # 1. Weather Query
     if "weather" in q_lower or "temperature" in q_lower:
+        # ... (Existing weather logic) ...
         parts = query.split("in ")
-        city = "Sonipat" # Default city 
+        city = "Sonipat" 
         if len(parts) > 1:
             city = parts[-1].split("?")[0].strip()
         
@@ -150,7 +152,23 @@ def handle_web_query(query):
         speak(weather_reply)
         return weather_reply
 
-    # 2. General Search Fallback
+    # 2. AQI and General Search Fallback 
+    elif "aqi" in q_lower or "air quality" in q_lower:
+        # Force a web search for AQI 
+        search_query = query.replace("what is", "").replace("search for", "").strip()
+        search_url = f"https://www.google.com/search?q={search_query}"
+        
+        try:
+            webbrowser.open_new_tab(search_url)
+            reply = f"I opened a Google search for the latest Air Quality data for: {search_query}"
+            speak(reply)
+            return reply
+        except Exception as e:
+            reply = f"I tried to search the web but failed to launch the browser: {e}"
+            speak(reply)
+            return reply
+
+    # 3. General Search Fallback (Original logic for other web queries)
     else:
         search_query = query.replace("who is", "").replace("what is", "").replace("search for", "").strip()
         search_url = f"https://www.google.com/search?q={search_query}"
@@ -161,10 +179,9 @@ def handle_web_query(query):
             speak(reply)
             return reply
         except Exception as e:
-            reply = f"I tried to search the web for {search_query}, but failed to launch the browser: {e}"
+            reply = f"I tried to search the web but failed to launch the browser: {e}"
             speak(reply)
             return reply
-
 # --- System Handler ---
 
 def handle_system_command(query):
@@ -294,4 +311,5 @@ def process_text_query(query: str) -> str:
     else: # intent == "chat"
 
         return handle_chat_query(query)
+
 
