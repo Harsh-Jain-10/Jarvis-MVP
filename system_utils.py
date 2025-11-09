@@ -16,7 +16,7 @@ from datetime import datetime
 def get_current_datetime(query: str) -> str:
     """Returns the current day, date, and time using the live system clock."""
     
-    # --- THIS LINE USES YOUR CURRENT COMPUTER'S CLOCK ---
+    # This line fetches the time from your computer's operating system
     now = datetime.now()
     
     q_lower = query.lower()
@@ -29,7 +29,7 @@ def get_current_datetime(query: str) -> str:
     elif "time" in q_lower and "date" not in q_lower:
         reply = now.strftime("The current time is %I:%M %p.")
     
-    # Provide the timezone 
+    # Time Zone context
     reply += " (Time Zone: IST)." 
         
     return reply
@@ -163,4 +163,5 @@ def restart() -> str:
     else:
 
         return "Restart command not supported on this OS."
+
 
