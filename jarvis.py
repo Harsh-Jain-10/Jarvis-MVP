@@ -173,9 +173,13 @@ def handle_web_query(query):
 def handle_system_command(query):
     """Routes and executes the appropriate system utility."""
     q_lower = query.lower()
+    response = "" # Initialize response variable
 
+    # --- Time/Date Logic (Highest Priority) ---
     if "date" in q_lower or "day" in q_lower or "time" in q_lower:
         response = system_utils.get_current_datetime(query)
+    
+    # --- System Action Logic ---
     elif "open" in q_lower or "start" in q_lower or "launch" in q_lower:
         response = system_utils.open_app(query)
     elif "create folder" in q_lower or "make directory" in q_lower:
@@ -188,10 +192,13 @@ def handle_system_command(query):
         response = system_utils.shutdown()
     elif "restart" in q_lower:
         response = system_utils.restart()
+    
+    # --- Fallbacks ---
     elif "folder" in q_lower or "directory" in q_lower:
         response = "I detected a command about a folder, but I only know how to 'create folder' right now. I do not have a delete function."
     else:
-        response = "I detected a system command, but I'm not sure which one to execute."
+        # If the intent detector said "system" but none of the commands matched, reply with LLM assistance suggestion.
+        response = "I detected a system command, but I'm not sure which one to execute. Try asking for chat advice instead."
         
     speak(response)
     return response
@@ -288,4 +295,5 @@ def process_text_query(query: str) -> str:
     elif intent == "web":
         return handle_web_query(query)
     else: # intent == "chat"
+
         return handle_chat_query(query)
