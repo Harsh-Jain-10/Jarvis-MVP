@@ -9,18 +9,32 @@ from datetime import datetime
 # --- Utility Functions---
 
 
+# jarvis/system_utils.py (Ensure this is at the top)
+from datetime import datetime 
+
+
 def get_current_datetime(query: str) -> str:
-    """Returns the current day, date, and time."""
+    """Returns the current day, date, and time using the live system clock."""
+    
+    # --- THIS LINE USES YOUR CURRENT COMPUTER'S CLOCK ---
     now = datetime.now()
     
-    if "date" in query.lower() or "day" in query.lower():
+    q_lower = query.lower()
+    
+    # Default reply format
+    reply = now.strftime("The current date is %A, %B %d, %Y, and the time is %I:%M %p.")
+
+    if "date" in q_lower and "time" not in q_lower:
         reply = now.strftime("Today is %A, %B %d, %Y.")
-    elif "time" in query.lower():
+    elif "time" in q_lower and "date" not in q_lower:
         reply = now.strftime("The current time is %I:%M %p.")
-    else:
-        reply = now.strftime("The current date and time is %A, %B %d, %Y at %I:%M %p.")
+    
+    # Provide the timezone 
+    reply += " (Time Zone: IST)." 
         
     return reply
+
+# ... (rest of system_utils.py) ...
 
 def open_app(name: str) -> str:
     """Attempts to open a program or file based on the OS."""
@@ -149,3 +163,4 @@ def restart() -> str:
     else:
 
         return "Restart command not supported on this OS."
+
