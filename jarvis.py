@@ -1,4 +1,4 @@
-# jarvis/jarvis.py - COMPLETE CODE (MVP)
+# jarvis/jarvis.py -
 import pyttsx3
 import threading
 import os
@@ -7,9 +7,7 @@ import json
 import webbrowser
 import ollama 
 from dotenv import load_dotenv
-from collections import deque # <-- NEW IMPORT for history management
-
-# Import utility modules
+from collections import deque 
 import notes
 import system_utils 
 
@@ -80,7 +78,7 @@ def speak(text):
 def detect_intent(query: str) -> str:
     q_lower = query.lower()
     
-    # 1. System Control (Time/Date fix already integrated here)
+    # 1. System Control 
     system_keywords = ["open", "start", "launch", "shutdown", "restart", "screenshot", "folder", "directory", "cancel shutdown", "day today", "date today", "time now", "current time"]
     if any(keyword in q_lower for keyword in system_keywords):
         return "system"
@@ -90,7 +88,7 @@ def detect_intent(query: str) -> str:
     if any(keyword in q_lower for keyword in notes_keywords):
         return "notes"
         
-    # 3. Real-time Web Data (ADD AQI/AIR QUALITY)
+    # 3. Real-time Web Data 
     web_keywords = ["weather", "news", "temperature", "aqi", "air quality", "stock price", "latest news"]
     if any(keyword in q_lower for keyword in web_keywords):
         return "web"
@@ -168,7 +166,7 @@ def handle_web_query(query):
             speak(reply)
             return reply
 
-    # 3. General Search Fallback (Original logic for other web queries)
+    # 3. General Search Fallback
     else:
         search_query = query.replace("who is", "").replace("what is", "").replace("search for", "").strip()
         search_url = f"https://www.google.com/search?q={search_query}"
@@ -311,5 +309,6 @@ def process_text_query(query: str) -> str:
     else: # intent == "chat"
 
         return handle_chat_query(query)
+
 
 
