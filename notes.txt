@@ -1,2 +1,3 @@
 - jarvis make a
-- jarvis make a  for go to college on Monday
+-go to college on Monday
+
