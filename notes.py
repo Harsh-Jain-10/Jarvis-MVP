@@ -40,9 +40,10 @@ def clear_notes() -> str:
     try:
         if os.path.exists(NOTES_FILE):
             os.remove(NOTES_FILE)
-            # Recreate the file just in case, or just leave it removed
+           
             open(NOTES_FILE, 'w').close() 
         return "All notes have been cleared."
     except Exception as e:
 
         return f"Failed to clear notes: {e}"
+
