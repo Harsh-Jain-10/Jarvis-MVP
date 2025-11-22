@@ -37,14 +37,14 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // --- Conversation Log Helper (Adjusted for hidden log) ---
+    // --- Conversation Log Helper ( ---
     function appendMessage(sender, text, isTranscription = false) {
         // Find the last user message to update transcription, otherwise create new
         if (isTranscription && sender === 'user') {
             const lastUserMsg = logContainer.querySelector('.user-msg:last-child');
             if (lastUserMsg && lastUserMsg.classList.contains('transcribing')) {
                 lastUserMsg.textContent = "You: " + text;
-                logContainer.scrollTop = logContainer.scrollHeight; // Keep scrolling for transcription
+                logContainer.scrollTop = logContainer.scrollHeight; // 
                 return;
             }
         }
@@ -69,7 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!query.trim()) return;
 
         appendMessage('user', query); // Still append to the hidden log
-        // userInput.value = ''; // REMOVED
+        // userInput.value = ''; 
         
         // Stop any currently running recognition
         if (currentRecognition) {
@@ -206,3 +206,4 @@ document.addEventListener('DOMContentLoaded', () => {
     updateState('idle');
 
 });
+
