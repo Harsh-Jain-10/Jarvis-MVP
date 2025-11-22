@@ -1,10 +1,9 @@
-// jarvis/static/voiceweb.js (Adjusted for new UI)
+// jarvis/static/voiceweb.js 
 
 document.addEventListener('DOMContentLoaded', () => {
     const micButton = document.getElementById('mic-button');
-    // const sendButton = document.getElementById('send-button'); // REMOVED
-    // const userInput = document.getElementById('user-input'); // REMOVED
-    const logContainer = document.getElementById('log'); // This is now the hidden log
+   
+    const logContainer = document.getElementById('log'); 
     const ringContainer = document.getElementById('ring-container');
     const statusMessage = document.getElementById('status-message');
 
@@ -205,4 +204,5 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Initial state setup
     updateState('idle');
+
 });
