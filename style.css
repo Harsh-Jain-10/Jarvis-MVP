@@ -4,7 +4,7 @@ body {
     margin: 0;
     padding: 0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #000; /* Deep black background */
+    background-color: #000; 
     color: #00eaff; /* Bright cyan text color for consistency */
     display: flex;
     justify-content: center;
@@ -201,4 +201,5 @@ body {
 /* No longer needed: userInput, sendButton styles */
 /* .user-input-container { display: none; } */
 /* .user-input { display: none; } */
+
 /* .send-button { display: none; } */
