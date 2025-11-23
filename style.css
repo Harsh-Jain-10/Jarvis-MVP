@@ -24,7 +24,7 @@ body {
     position: relative;
 }
 
-/* Header (for Jarvis.AI title and fake window controls) */
+/* Header  */
 .header {
     position: absolute;
     top: 15px;
@@ -203,3 +203,4 @@ body {
 /* .user-input { display: none; } */
 
 /* .send-button { display: none; } */
+
