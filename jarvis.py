@@ -24,7 +24,7 @@ OLLAMA_MODEL = 'llama3:8b' # Ensure this matches your pulled model
 CONVERSATION_HISTORY = deque(maxlen=6) 
 
 
-# --- Server TTS Implementation (pyttsx3) ---
+# --- Server TTS Implementation  ---
 
 def _init_tts_engine():
     """Initializes the pyttsx3 engine."""
@@ -309,6 +309,7 @@ def process_text_query(query: str) -> str:
     else: # intent == "chat"
 
         return handle_chat_query(query)
+
 
 
 
