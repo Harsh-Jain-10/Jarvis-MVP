@@ -64,7 +64,7 @@ body {
     background-color: rgba(0, 234, 255, 0.3);
 }
 
-/* Ring Container (Central Orb) */
+/* Ring Container  */
 .ring-container {
     width: 250px; /* Larger orb */
     height: 250px;
@@ -203,5 +203,6 @@ body {
 /* .user-input { display: none; } */
 
 /* .send-button { display: none; } */
+
 
 
