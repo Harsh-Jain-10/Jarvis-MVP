@@ -5,7 +5,7 @@ body {
     padding: 0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: #000; 
-    color: #00eaff; /* Bright cyan text color for consistency */
+    color: #00eaff; 
     display: flex;
     justify-content: center;
     align-items: center;
@@ -203,4 +203,5 @@ body {
 /* .user-input { display: none; } */
 
 /* .send-button { display: none; } */
+
 
