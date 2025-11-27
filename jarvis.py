@@ -11,7 +11,6 @@ from collections import deque
 import notes
 import system_utils 
 
-# Load environment variables
 load_dotenv()
 
 # --- Global State Variables ---
@@ -308,6 +307,7 @@ def process_text_query(query: str) -> str:
     else: # intent == "chat"
 
         return handle_chat_query(query)
+
 
 
 
