@@ -19,8 +19,7 @@ tts_engine = None
 TTS_ENABLED = True
 OPENWEATHER_API_KEY = os.getenv("OPENWEATHER_API_KEY")
 OLLAMA_MODEL = 'llama3:8b' # Ensure this matches your pulled model
-# Fixed-size queue for conversation history 
-# Stores up to 6 turns 
+ 
 CONVERSATION_HISTORY = deque(maxlen=6) 
 
 
@@ -309,6 +308,7 @@ def process_text_query(query: str) -> str:
     else: # intent == "chat"
 
         return handle_chat_query(query)
+
 
 
 
