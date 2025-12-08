@@ -51,6 +51,3 @@ Create a file named **`.env`** in the `jarvis/` root folder to store API keys se
 - **Harsh Jain** - Initial work
 
 ---
-```text
-# Obtain a free API key from OpenWeatherMap
-OPENWEATHER_API_KEY=YOUR_OPENWEATHERMAP_API_KEY_HERE
