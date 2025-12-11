@@ -1,12 +1,7 @@
-Flask
+requests
+python-dotenv
+wikipedia-api
+psutil
 pyttsx3
 SpeechRecognition
 pyaudio
-requests
-beautifulsoup4
-python-dotenv
-pyautogui
-Pillow
-ollama
-
-
