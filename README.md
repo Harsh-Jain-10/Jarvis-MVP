@@ -275,3 +275,11 @@ Want to make it even better?
 **🎤 Now you have a true hands-free voice assistant! 🤖**
 
 **Just run it, and start talking - no menus, no choices, just pure voice interaction!**
+
+---
+
+## 👥 Authors
+
+- **Harsh Jain** - Initial work
+
+---
