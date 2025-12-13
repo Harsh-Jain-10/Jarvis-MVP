@@ -1,6 +1,6 @@
 # JARVIS Voice Assistant 🤖🎤
 
-A beginner-friendly, fully voice-controlled personal assistant built in Python that mimics Iron Man's JARVIS. This MVP enables hands-free computer control through natural voice commands - no typing, no menus, just continuous voice interaction.
+A beginner-friendly, ***fully voice-controlled*** personal assistant built in Python that mimics Iron Man's JARVIS. This MVP enables hands-free computer control through natural voice commands - no typing, no menus, just continuous voice interaction.
 
 ## 🌟 Features
 
