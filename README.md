@@ -179,15 +179,6 @@ MICROPHONE_TIMEOUT = 5  # How long to wait for speech
 ✅ Use full names: "Open Google Chrome" not just "Chrome"
 ✅ For questions, use complete sentences
 
-## 🔧 Advanced: Add Custom Commands
-
-Edit `assistant_core.py` and add your command:
-
-```python
-# In process_command() function
-if "play music" in command:
-    return open_application("spotify")
-```
 
 JARVIS will automatically recognize voice commands for it!
 
