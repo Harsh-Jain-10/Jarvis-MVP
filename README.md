@@ -165,7 +165,6 @@ MICROPHONE_TIMEOUT = 5  # How long to wait for speech
 ## 🎯 Tips for Best Experience
 
 ### Hardware
-✅ Use USB microphone or headset (better than laptop mic)
 ✅ Use in quiet environment
 ✅ Keep stable internet connection
 
