@@ -164,10 +164,6 @@ MICROPHONE_TIMEOUT = 5  # How long to wait for speech
 
 ## 🎯 Tips for Best Experience
 
-### Hardware
-✅ Use in quiet environment
-✅ Keep stable internet connection
-
 ### Speaking
 ✅ Speak clearly at normal pace
 ✅ Wait for "Listening..." before speaking
