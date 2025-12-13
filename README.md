@@ -1,6 +1,6 @@
 # JARVIS Voice Assistant 🤖🎤
 
-A **fully voice-controlled** personal assistant in Python. No menus, no choices - just continuous voice interaction like a real AI assistant!
+A beginner-friendly, fully voice-controlled personal assistant built in Python that mimics Iron Man's JARVIS. This MVP enables hands-free computer control through natural voice commands - no typing, no menus, just continuous voice interaction.
 
 ## 🌟 Features
 
