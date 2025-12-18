@@ -18,7 +18,6 @@ def print_welcome():
     print("💡 Say 'bye' or 'exit' to stop the assistant")
     print("🔇 Press Ctrl+C to force quit\n")
 
-
 def main():
     """
     Main function - Continuous voice loop (no interruptions)
@@ -78,4 +77,5 @@ if __name__ == "__main__":
     # Run the continuous voice assistant
 
     main()
+
 
