@@ -7,7 +7,6 @@ from assistant_core import get_response
 from voice_utils import speak, listen, initialize_tts
 from config import ASSISTANT_NAME
 
-
 def print_welcome():
     """
     Prints a simple welcome message
@@ -79,3 +78,4 @@ if __name__ == "__main__":
     # Run the continuous voice assistant
 
     main()
+
