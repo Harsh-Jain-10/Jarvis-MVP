@@ -1,6 +1,6 @@
 """
 JARVIS Voice Assistant - Continuous Voice Mode
-A fully voice-controlled personal assistant (no text input, no menus)
+A fully voice-controlled personal assistant 
 """
 
 from assistant_core import get_response
@@ -77,4 +77,5 @@ def main():
 
 if __name__ == "__main__":
     # Run the continuous voice assistant
+
     main()
