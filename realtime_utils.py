@@ -60,7 +60,6 @@ def get_weather(city_name):
     except Exception as e:
         return f"Error fetching weather: {str(e)}"
 
-
 def get_general_info(query):
     """
     Gets general information using Wikipedia API
@@ -112,4 +111,5 @@ def answer_question(question):
         return get_general_info(topic)
     else:
         return "I'm not sure what you're asking about. Could you rephrase your question?"
+
 
