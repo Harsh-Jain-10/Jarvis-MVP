@@ -83,7 +83,6 @@ def open_application(app_name):
     except Exception as e:
         return f"Error opening {app_name}: {str(e)}"
 
-
 def list_installed_apps():
     """
     Lists all applications that JARVIS knows about
@@ -93,6 +92,7 @@ def list_installed_apps():
         app_list.append(app_name)
     
     return app_list
+
 
 
 
