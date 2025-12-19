@@ -8,7 +8,6 @@ import subprocess
 import psutil
 from config import COMMON_APPS
 
-
 def shutdown_system():
     """
     Shuts down the Windows system
@@ -97,3 +96,4 @@ def list_installed_apps():
         app_list.append(app_name)
     
     return app_list
+
