@@ -7,7 +7,6 @@ import requests
 import wikipediaapi
 from config import WEATHER_API_KEY
 
-
 def get_weather(city_name):
     """
     Gets current weather for a city using OpenWeatherMap API
@@ -113,3 +112,4 @@ def answer_question(question):
         return get_general_info(topic)
     else:
         return "I'm not sure what you're asking about. Could you rephrase your question?"
+
