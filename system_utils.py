@@ -19,7 +19,6 @@ def shutdown_system():
     except Exception as e:
         return f"Error shutting down: {str(e)}"
 
-
 def restart_system():
     """
     Restarts the Windows system
@@ -96,4 +95,5 @@ def list_installed_apps():
         app_list.append(app_name)
     
     return app_list
+
 
