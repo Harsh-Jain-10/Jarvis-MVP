@@ -110,6 +110,3 @@ def answer_question(question):
         return get_general_info(topic)
     else:
         return "I'm not sure what you're asking about. Could you rephrase your question?"
-
-
-
