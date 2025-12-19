@@ -30,7 +30,6 @@ def restart_system():
     except Exception as e:
         return f"Error restarting: {str(e)}"
 
-
 def check_if_app_installed(app_name):
     """
     Checks if an application is installed by looking in common paths
@@ -95,5 +94,6 @@ def list_installed_apps():
         app_list.append(app_name)
     
     return app_list
+
 
 
