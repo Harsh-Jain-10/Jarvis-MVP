@@ -92,8 +92,3 @@ def list_installed_apps():
         app_list.append(app_name)
     
     return app_list
-
-
-
-
-
