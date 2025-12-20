@@ -119,7 +119,6 @@ Other:
         """
         return help_text.strip()
     
-    
     # ===== DEFAULT RESPONSE =====
     # If no command matches, try to answer as a general question
     if "?" in command or len(command.split()) > 3:
@@ -141,6 +140,7 @@ def get_response(user_input):
         # If anything goes wrong, don't crash - return a friendly error
 
         return f"Oops! Something went wrong: {str(e)}. Please try again."
+
 
 
 
