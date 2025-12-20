@@ -127,7 +127,6 @@ Other:
     else:
         return "I'm not sure how to help with that. Type 'help' to see what I can do."
 
-
 def get_response(user_input):
     """
     Wrapper function that safely processes commands
@@ -140,6 +139,7 @@ def get_response(user_input):
         # If anything goes wrong, don't crash - return a friendly error
 
         return f"Oops! Something went wrong: {str(e)}. Please try again."
+
 
 
 
