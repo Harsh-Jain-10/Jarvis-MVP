@@ -90,7 +90,6 @@ def process_command(user_input):
     if any(command.startswith(starter) for starter in question_starters):
         return answer_question(command)
     
-    
     # ===== LIST APPS COMMAND =====
     if "list apps" in command or "show apps" in command or "what apps" in command:
         apps = list_installed_apps()
@@ -143,6 +142,7 @@ def get_response(user_input):
         # If anything goes wrong, don't crash - return a friendly error
 
         return f"Oops! Something went wrong: {str(e)}. Please try again."
+
 
 
 
