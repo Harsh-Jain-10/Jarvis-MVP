@@ -8,7 +8,6 @@ from web_utils import search_google, open_website
 from realtime_utils import get_weather, answer_question
 from config import ASSISTANT_NAME
 
-
 def process_command(user_input):
     """
     Main function that processes user input and routes to appropriate functions
@@ -147,4 +146,5 @@ def get_response(user_input):
         return response
     except Exception as e:
         # If anything goes wrong, don't crash - return a friendly error
+
         return f"Oops! Something went wrong: {str(e)}. Please try again."
