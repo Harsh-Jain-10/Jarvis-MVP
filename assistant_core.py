@@ -139,12 +139,3 @@ def get_response(user_input):
         # If anything goes wrong, don't crash - return a friendly error
 
         return f"Oops! Something went wrong: {str(e)}. Please try again."
-
-
-
-
-
-
-
-
-
