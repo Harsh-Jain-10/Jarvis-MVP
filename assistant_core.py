@@ -95,7 +95,6 @@ def process_command(user_input):
         apps = list_installed_apps()
         return f"I can open these applications: {', '.join(apps)}"
     
-    
     # ===== HELP COMMAND =====
     if "help" in command or "what can you do" in command:
         help_text = f"""
@@ -142,6 +141,7 @@ def get_response(user_input):
         # If anything goes wrong, don't crash - return a friendly error
 
         return f"Oops! Something went wrong: {str(e)}. Please try again."
+
 
 
 
