@@ -46,7 +46,6 @@ def process_command(user_input):
         app_name = command.replace("open ", "").strip()
         return open_application(app_name)
     
-    
     # ===== SEARCH COMMANDS =====
     if "search for" in command or "search" in command:
         # Extract search query
@@ -145,6 +144,7 @@ def get_response(user_input):
         # If anything goes wrong, don't crash - return a friendly error
 
         return f"Oops! Something went wrong: {str(e)}. Please try again."
+
 
 
 
