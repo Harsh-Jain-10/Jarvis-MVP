@@ -60,7 +60,6 @@ def process_command(user_input):
         else:
             return "What would you like me to search for?"
     
-    
     # ===== WEATHER COMMANDS =====
     if "weather" in command:
         # Try to extract city name
@@ -146,5 +145,6 @@ def get_response(user_input):
         # If anything goes wrong, don't crash - return a friendly error
 
         return f"Oops! Something went wrong: {str(e)}. Please try again."
+
 
 
