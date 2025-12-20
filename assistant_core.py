@@ -83,7 +83,6 @@ def process_command(user_input):
         else:
             return "Please specify a city. For example: 'weather in Sonipat'"
     
-    
     # ===== GENERAL KNOWLEDGE QUESTIONS =====
     # Check for question patterns
     question_starters = ["who is", "what is", "where is", "when is", "tell me about", "who was"]
@@ -144,6 +143,7 @@ def get_response(user_input):
         # If anything goes wrong, don't crash - return a friendly error
 
         return f"Oops! Something went wrong: {str(e)}. Please try again."
+
 
 
 
