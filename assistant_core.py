@@ -40,7 +40,6 @@ def process_command(user_input):
     if "restart" in command or "reboot" in command:
         return restart_system()
     
-    
     # ===== OPEN APPLICATION COMMANDS =====
     if command.startswith("open "):
         # Extract application name after "open "
@@ -147,4 +146,5 @@ def get_response(user_input):
         # If anything goes wrong, don't crash - return a friendly error
 
         return f"Oops! Something went wrong: {str(e)}. Please try again."
+
 
