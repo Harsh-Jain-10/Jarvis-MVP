@@ -33,7 +33,6 @@ def process_command(user_input):
     if "bye" in command or "goodbye" in command:
         return "Goodbye! Have a great day!"
     
-    
     # ===== SYSTEM COMMANDS =====
     if "shutdown" in command or "shut down" in command:
         return shutdown_system()
@@ -148,3 +147,4 @@ def get_response(user_input):
         # If anything goes wrong, don't crash - return a friendly error
 
         return f"Oops! Something went wrong: {str(e)}. Please try again."
+
