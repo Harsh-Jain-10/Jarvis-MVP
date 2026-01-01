@@ -1,7 +1,0 @@
-requests
-python-dotenv
-wikipedia-api
-psutil
-pyttsx3
-SpeechRecognition
-pyaudio
