@@ -14,260 +14,235 @@ A Python-based voice-controlled AI assistant inspired by Iron Man's J.A.R.V.I.S.
 - ⏰ Date and time queries
 
 ## Project Structure
+```
+jarvis-assistant/
+│
+├── jarvis.py              # Main entry point and command handler
+├── chat_ai.py             # AI chat integration with Ollama
+├── app_launcher.py        # Application launching functionality
+├── system_control.py      # System operations (shutdown, screenshot, etc.)
+├── web_search.py          # Web search functionality
+├── requirements.txt       # Python dependencies
+└── screenshots/           # Directory for saved screenshots (auto-created)
+```
 
-## 🎯 How It Works
+## Code Structure
 
-1. **Start**: Run the program
-2. **Listen**: JARVIS automatically starts listening
-3. **Speak**: Say your command naturally
-4. **Respond**: JARVIS speaks the answer
-5. **Repeat**: JARVIS keeps listening for next command
-6. **Exit**: Say "bye" to stop
+### `jarvis.py`
+The main application file that:
+- Handles voice input/output using Windows native speech synthesis
+- Processes user commands and routes them to appropriate modules
+- Implements core features (time, date, weather)
+- Manages the main conversation loop
+- Includes safety confirmations for destructive actions
 
-**That's it!** No menus, no choices, pure voice interaction.
+### `chat_ai.py`
+Manages AI conversations:
+- Connects to local Ollama API (default: `http://localhost:11434`)
+- Maintains conversation history for context-aware responses
+- Uses Llama3 model for intelligent responses
+- Handles fallback responses on errors
+- Supports streaming and non-streaming responses
 
-## 🚀 Installation
+### `app_launcher.py`
+Opens common Windows applications:
+- Camera, Calculator, Chrome, Edge
+- VS Code, VLC, WhatsApp
+- Microsoft Store
+- Returns `True` if app found, `False` otherwise
 
-### Windows Installation (Step-by-Step)
+### `system_control.py`
+System-level operations:
+- `shutdown_pc()` - Shuts down the computer
+- `restart_pc()` - Restarts the computer
+- `sleep_pc()` - Puts computer to sleep
+- `take_screenshot()` - Captures and saves screenshot with timestamp
 
-#### 1. Install Python
-- Download Python 3.7+ from https://www.python.org/downloads/
-- **Important**: Check "Add Python to PATH" during installation
+### `web_search.py`
+Web search functionality:
+- Parses search queries from voice commands
+- Opens Google search results in default browser
+- Handles URL encoding for special characters
 
-#### 2. Install PyAudio (Required for Microphone)
+## Installation
 
-Open Command Prompt and run:
+### Prerequisites
 
+1. **Python 3.8+** installed on your system
+2. **Ollama** installed and running locally ([Download Ollama](https://ollama.ai))
+3. **Microphone** for voice input
+4. **Windows OS** (uses Windows-native speech synthesis)
+
+### Setup Steps
+
+1. Clone or download this repository:
+```bash
+git clone <repository-url>
+cd jarvis-assistant
+```
+
+2. Install required Python packages:
+```bash
+pip install -r requirements.txt
+```
+
+3. Install PyAudio (may require additional steps on Windows):
 ```bash
 pip install pipwin
 pipwin install pyaudio
 ```
 
-**If above doesn't work**, download PyAudio wheel:
-- Go to: https://www.lfd.uci.edu/~gohlke/pythonlibs/#pyaudio
-- Download file matching your Python version
-- Example: `PyAudio‑0.2.11‑cp39‑cp39‑win_amd64.whl` for Python 3.9
-- Install: `pip install PyAudio‑0.2.11‑cp39‑cp39‑win_amd64.whl`
-
-#### 3. Install Other Dependencies
-
+4. Install and start Ollama with Llama3:
 ```bash
-pip install -r requirements.txt
+ollama pull llama3
+ollama serve
 ```
 
-#### 4. (Optional) Setup Weather API
-- Get free key from: https://openweathermap.org/api
-- Create `.env` file with: `WEATHER_API_KEY=your_key_here`
-
-#### 5. Test Your Microphone
-- Make sure microphone is connected and working
-- Go to Windows Settings → Privacy → Microphone → Allow apps
-
-## ▶️ Run JARVIS
-
+5. Run the assistant:
 ```bash
-python main.py
+python jarvis.py
 ```
 
-**That's it!** Start speaking after you see "Listening..."
-
-## 🎤 Example Conversation
-
+## Requirements
 ```
-======================================================================
-       🤖 JARVIS Voice Assistant - Continuous Mode 🤖
-======================================================================
-
-🔧 Initializing voice engine...
-✅ Voice engine ready!
-
-JARVIS: Hello! I am JARVIS, your voice assistant. I'm ready to help you.
-
-🎤 Listening... (speak now)
-You said: hello jarvis
-JARVIS: Hello! I'm JARVIS. How can I assist you today?
-
-🎤 Listening... (speak now)
-You said: what's the weather in sonipat
-JARVIS: Weather in Sonipat: Temperature 25°C, Clear sky, Humidity 60%
-
-🎤 Listening... (speak now)
-You said: search for python tutorials
-JARVIS: Searching Google for 'python tutorials' in Chrome...
-
-🎤 Listening... (speak now)
-You said: open notepad
-JARVIS: Opening notepad...
-
-🎤 Listening... (speak now)
-You said: who is elon musk
-JARVIS: [Speaks Wikipedia summary about Elon Musk]
-
-🎤 Listening... (speak now)
-You said: bye
-JARVIS: Goodbye! Have a great day!
-
-👋 Exiting JARVIS...
+SpeechRecognition
+pyaudio
+requests
+pyautogui
 ```
 
-## ⚙️ Customize Voice
+**Note:** The following are built-in Python modules and don't need separate installation:
+- `os`
+- `webbrowser`
+- `time`
+- `datetime`
+- `subprocess`
 
-Edit `config.py`:
+## Voice Commands
 
+### Basic Commands
+- **"exit"** or **"stop"** - Close the assistant
+- **"date"** - Get current date
+- **"time"** - Get current time
+- **"date and time"** - Get both date and time
+- **"define time"** - Get definition of time
+
+### Applications
+- **"open calculator"** - Opens Windows Calculator
+- **"open camera"** - Opens Windows Camera
+- **"open whatsapp"** - Opens WhatsApp desktop
+- **"open google"** or **"open chrome"** - Opens Google Chrome
+
+### Web & Search
+- **"search [query]"** - Search Google for the query
+  - Example: *"search Python tutorials"*
+
+### Weather
+- **"weather in [city]"** - Get current weather for specified city
+  - Example: *"weather in London"*
+
+### System Control
+- **"screenshot"** - Capture and save a screenshot
+- **"shutdown"** - Shutdown the computer (requires confirmation)
+
+### AI Chat
+- Any unrecognized command will be sent to the AI for a conversational response
+  - Example: *"Tell me a joke"*
+  - Example: *"What is artificial intelligence?"*
+
+## Configuration
+
+### Changing AI Model
+Edit `chat_ai.py` to change the Ollama model:
 ```python
-# Voice speed (words per minute)
-VOICE_RATE = 150  # Try: 120 (slower) or 180 (faster)
-
-# Voice volume (0.0 to 1.0)
-VOICE_VOLUME = 0.9  # Try: 0.5 (quieter) or 1.0 (max)
-
-# Listening timeout (seconds)
-MICROPHONE_TIMEOUT = 5  # How long to wait for speech
+MODEL = "llama3"  # Change to "llama2", "mistral", etc.
 ```
 
-## 🛠️ Troubleshooting
-
-### "No speech detected"
-**Problem**: JARVIS doesn't hear you
-**Solution**:
-- Check if microphone is connected and not muted
-- Speak louder and clearer
-- Reduce background noise
-- Increase `MICROPHONE_TIMEOUT` in `config.py`
-
-### "Couldn't understand what you said"
-**Problem**: Speech not recognized
-**Solution**:
-- Speak more slowly and clearly
-- Move closer to microphone
-- Check internet connection (speech recognition needs internet)
-- Reduce background noise
-
-### PyAudio Installation Failed
-**Problem**: Can't install PyAudio
-**Solution**:
-- Use pipwin method (see installation steps)
-- Or download wheel file manually
-- Make sure you have Visual C++ installed
-
-### No Voice Output
-**Problem**: Can't hear JARVIS
-**Solution**:
-- Check system volume
-- Check speaker/headphone connection
-- Verify text-to-speech engine in Windows
-
-### Internet Connection Error
-**Problem**: "Could not request results"
-**Solution**:
-- Voice recognition needs internet
-- Check your connection
-- Try again after internet is back
-
-## 🎯 Tips for Best Experience
-
-### Speaking
-✅ Speak clearly at normal pace
-✅ Wait for "Listening..." before speaking
-✅ Pause briefly between commands
-✅ Use natural language (no robotic speech needed)
-
-### Commands
-✅ Be specific: "Weather in Delhi" not just "Weather"
-✅ Use full names: "Open Google Chrome" not just "Chrome"
-✅ For questions, use complete sentences
-
-
-JARVIS will automatically recognize voice commands for it!
-
-## 📋 File Structure
-
-```
-project/
-├── main.py              # Continuous voice loop
-├── voice_utils.py       # Voice input/output
-├── assistant_core.py    # Command processing
-├── system_utils.py      # System operations
-├── web_utils.py        # Web searches
-├── realtime_utils.py   # Weather & knowledge
-├── config.py           # Settings
-├── requirements.txt    # Dependencies
-└── README.md          # This guide
+### Changing Ollama URL
+If Ollama is running on a different host/port:
+```python
+OLLAMA_URL = "http://localhost:11434/api/chat"
 ```
 
-## 🚦 Exit Options
+### Adding More Applications
+Edit `app_launcher.py` to add more applications:
+```python
+apps = {
+    "your_app": "command_to_launch",
+    # Example: "notepad": "notepad"
+}
+```
 
-1. **Say "Bye"**: Proper exit (recommended)
-2. **Press Ctrl+C**: Force quit
-3. **Close window**: Emergency exit
+## Safety Features
 
-## ⚠️ Important Notes
+- **Confirmation for Destructive Actions**: Shutdown command requires voice confirmation
+- **Error Handling**: Graceful fallbacks for speech recognition failures
+- **Timeout Protection**: Network requests have timeout limits
 
-- **Internet Required**: For voice recognition and weather
-- **Microphone Required**: Must have working microphone
-- **Windows Only**: Designed for Windows (modify for Mac/Linux)
-- **Shutdown Works**: Be careful with shutdown commands!
-- **Background Noise**: Works best in quiet environment
+## Troubleshooting
 
-## 📊 Technology Used
+### Microphone Not Working
+- Check microphone permissions in Windows Settings
+- Ensure microphone is set as default input device
+- Test with: `python -m speech_recognition`
 
-- **pyttsx3**: Text-to-speech (offline)
-- **SpeechRecognition**: Speech-to-text (online)
-- **PyAudio**: Microphone access
-- **Google Speech API**: Voice recognition (free)
+### Ollama Connection Error
+- Verify Ollama is running: `ollama serve`
+- Check if model is downloaded: `ollama list`
+- Test API: `curl http://localhost:11434/api/tags`
 
-## 🎬 Quick Start Guide
+### Speech Synthesis Issues
+- Ensure PowerShell execution policy allows scripts
+- Try running PowerShell as administrator
+- Check Windows Speech settings
 
+### PyAudio Installation Issues
+On Windows, use:
 ```bash
-# 1. Install Python 3.7+
-# 2. Install PyAudio
 pip install pipwin
 pipwin install pyaudio
-
-# 3. Install dependencies
-pip install -r requirements.txt
-
-# 4. Run JARVIS
-python main.py
-
-# 5. Start speaking!
 ```
 
-## 💡 Example Commands to Try
+## Future Enhancements
 
-```
-"Hello Jarvis"
-"What can you do"
-"Weather in [your city]"
-"Search for news today"
-"Open calculator"
-"Who is Bill Gates"
-"Tell me about India"
-"List all apps"
-"Help"
-"Bye"
-```
+- [ ] Add support for custom wake words
+- [ ] Implement email sending functionality
+- [ ] Add calendar integration
+- [ ] Support for multiple languages
+- [ ] Add Spotify/music control
+- [ ] Implement reminder system
+- [ ] Add file management commands
+- [ ] Create GUI dashboard
 
+## Contributing
 
-## 🤝 Customize Further
+Contributions are welcome! Please feel free to submit a Pull Request.
 
-Want to make it even better?
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
-1. **Add wake word**: Modify `voice_utils.py` to activate with "Hey Jarvis"
-2. **Change voice**: Edit `initialize_tts()` to select different voices
-3. **Add commands**: Edit `assistant_core.py` to add new features
-4. **Adjust sensitivity**: Modify `MICROPHONE_TIMEOUT` in `config.py`
+## License
+
+This project is open source and available under the [MIT License](LICENSE).
+
+## Acknowledgments
+
+- Inspired by Marvel's J.A.R.V.I.S. from Iron Man
+- Built with [Ollama](https://ollama.ai) for AI capabilities
+- Uses [SpeechRecognition](https://github.com/Uberi/speech_recognition) for voice input
+- Weather data from [wttr.in](https://wttr.in)
+
+## Disclaimer
+
+This software is for educational purposes. Use system control features (shutdown, restart) with caution. The developers are not responsible for any data loss or system issues.
+
+## Contact
+
+For questions or support, please open an issue in the repository.
 
 ---
 
-**🎤 Now you have a true hands-free voice assistant! 🤖**
-
-**Just run it, and start talking - no menus, no choices, just pure voice interaction!**
-
----
-
-## 👥 Authors
-
-- **Harsh Jain** - Initial work
-
----
+**Made with ❤️ by [Harsh Jain]**
