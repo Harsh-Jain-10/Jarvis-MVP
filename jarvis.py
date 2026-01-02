@@ -39,7 +39,7 @@ def listen():
     except:
         return ""
 
-# ================= WEATHER (FIXED) =================
+# ================= WEATHER =================
 def get_weather(city):
     try:
         headers = {
@@ -159,3 +159,4 @@ while True:
     else:
         reply = chat_with_jarvis(command)
         speak(reply)
+
