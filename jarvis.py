@@ -159,4 +159,3 @@ while True:
     else:
         reply = chat_with_jarvis(command)
         speak(reply)
-
