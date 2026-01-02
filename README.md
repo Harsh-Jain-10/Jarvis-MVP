@@ -245,4 +245,4 @@ For questions or support, please open an issue in the repository.
 
 ---
 
-**Made with ❤️ by [Harsh Jain]**
+**Made by Harsh Jain**
