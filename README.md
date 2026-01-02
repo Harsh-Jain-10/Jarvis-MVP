@@ -1,17 +1,19 @@
-# JARVIS Voice Assistant 🤖🎤
+# Jarvis - AI Voice Assistant
 
-A beginner-friendly, ***fully voice-controlled*** personal assistant built in Python that mimics Iron Man's JARVIS. This MVP enables hands-free computer control through natural voice commands - no typing, no menus, just continuous voice interaction.
+A Python-based voice-controlled AI assistant inspired by Iron Man's J.A.R.V.I.S. This assistant can perform various tasks through voice commands, including system control, web searches, weather updates, and AI-powered conversations.
 
-## 🌟 Features
+## Features
 
-- **🎤 100% Voice Control**: Speak your commands, no typing needed
-- **🔄 Continuous Listening**: JARVIS keeps listening until you say "bye"
-- **🔊 Voice Responses**: JARVIS speaks all responses back to you
-- **💻 System Commands**: Shutdown, restart, open applications
-- **🌐 Web Search**: Search Google with voice
-- **🌤️ Weather**: Get real-time weather updates
-- **📚 Knowledge**: Ask any question
-- **🚀 Simple**: No menus, no interruptions, just talk!
+- 🎤 Voice recognition and text-to-speech
+- 🤖 AI-powered conversations using Ollama
+- 🌤️ Real-time weather information
+- 📸 Screenshot capture
+- 🔍 Web search functionality
+- 💻 System control (shutdown, restart, sleep)
+- 📱 Application launcher
+- ⏰ Date and time queries
+
+## Project Structure
 
 ## 🎯 How It Works
 
