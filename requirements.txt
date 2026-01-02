@@ -1,0 +1,10 @@
+SpeechRecognition
+pyttsx3
+pyaudio
+requests
+pyautogui
+os
+webbrowser
+requests
+time
+datetime
