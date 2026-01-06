@@ -136,6 +136,7 @@ pyautogui
 ### Web & Search
 - **"search [query]"** - Search Google for the query
   - Example: *"search Python tutorials"*
+  -  Example: *"search Gujarat's weather"*
 
 ### System Control
 - **"screenshot"** - Capture and save a screenshot
@@ -145,7 +146,7 @@ pyautogui
 - Any unrecognized command will be sent to the AI for a conversational response
   - Example: *"Tell me a joke"*
   - Example: *"What is artificial intelligence?"*
-
+  
 ## Configuration
 
 ### Changing AI Model
