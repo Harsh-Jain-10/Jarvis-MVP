@@ -62,6 +62,7 @@ Web search functionality:
 - Parses search queries from voice commands
 - Opens Google search results in default browser
 - Handles URL encoding for special characters
+- Handles weather searches (ex- "Search Delhi's weather")
 
 ## Installation
 
