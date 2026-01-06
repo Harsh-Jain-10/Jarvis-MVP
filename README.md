@@ -6,7 +6,6 @@ A Python-based voice-controlled AI assistant inspired by Iron Man's J.A.R.V.I.S.
 
 - 🎤 Voice recognition and text-to-speech
 - 🤖 AI-powered conversations using Ollama
-- 🌤️ Real-time weather information
 - 📸 Screenshot capture
 - 🔍 Web search functionality
 - 💻 System control (shutdown, restart, sleep)
