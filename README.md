@@ -136,6 +136,7 @@ pyautogui
 ### Web & Search
 - **"search [query]"** - Search Google for the query
   - Example: *"search Python tutorials"*
+- **"search [query]"** - Search Google for the weather updates
   -  Example: *"search Gujarat's weather"*
 
 ### System Control
