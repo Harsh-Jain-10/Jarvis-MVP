@@ -137,10 +137,6 @@ pyautogui
 - **"search [query]"** - Search Google for the query
   - Example: *"search Python tutorials"*
 
-### Weather
-- **"weather in [city]"** - Get current weather for specified city
-  - Example: *"weather in London"*
-
 ### System Control
 - **"screenshot"** - Capture and save a screenshot
 - **"shutdown"** - Shutdown the computer (requires confirmation)
