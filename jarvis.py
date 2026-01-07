@@ -23,7 +23,7 @@ def speak(text):
         stdout=subprocess.DEVNULL,
         stderr=subprocess.DEVNULL
     )
-
+    
 # ================= VOICE INPUT =================
 def listen():
     r = sr.Recognizer()
@@ -159,3 +159,4 @@ while True:
     else:
         reply = chat_with_jarvis(command)
         speak(reply)
+
