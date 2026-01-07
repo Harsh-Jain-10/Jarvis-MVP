@@ -22,4 +22,3 @@ def open_app(command):
             return True
 
     return False
-
