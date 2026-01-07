@@ -1,7 +1,6 @@
 import os
 import subprocess
 
-
 def open_app(command):
     command = command.lower()
 
@@ -23,3 +22,4 @@ def open_app(command):
             return True
 
     return False
+
